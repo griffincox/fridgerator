@@ -65,7 +65,7 @@
           Expiration date
         </label>
 
-        <input type="text" id="expiration_date" data-provide='datepicker' name="expiration_date" placeholder="Expiration date" class="form-control" value="<%= @item.expiration_date %>">
+        <input type="text" id="expiration_date" data-provide='datepicker' name="expiration_date" placeholder="Expiration date" class="form-control" value="<%= @item.expiration_date.strftime("%m/%d/%Y") %>">
       </div>
 
       <!-- Label and input for image_url -->

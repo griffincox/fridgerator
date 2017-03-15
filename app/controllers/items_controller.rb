@@ -136,6 +136,7 @@ class ItemsController < ApplicationController
         redirect_back(:fallback_location => "/", :notice => "Item created successfully.")
       end
     else
+
       render("items/new.html.erb")
     end
   end

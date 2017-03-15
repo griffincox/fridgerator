@@ -25,7 +25,7 @@
           <tr class="expired">
             <td><%= item.title.titleize %></td>
             <td>
-                Expired <%= distance_of_time_in_words(Time.now, item.expiration_date) %> Ago
+                Expired <%= distance_of_time_in_words(Time.now, item.expiration_date) %> ago
             </td>
             <td>
               <% if current_user == item.user %>
