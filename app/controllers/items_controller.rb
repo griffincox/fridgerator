@@ -161,16 +161,32 @@ class ItemsController < ApplicationController
     save_status = @item.save
 
     if save_status == true
-      referer = URI(request.referer).path
-
-      case referer
-      when "/items/#{@item.id}/edit", "/update_item"
-        redirect_to("/items/#{@item.id}", :notice => "Item updated successfully.")
-      else
-        redirect_back(:fallback_location => "/", :notice => "Item updated successfully.")
+      if @item.location == 0
+        @items = current_user.items.where(:location => 0).order(:expiration_date)
+        @table_title = "Items in your Fridge"
+        @new_title = "New Fridge Item"
+        render("/items/table.html.erb")
+      elsif @item.location == 1
+        @items = current_user.items.where(:location => 1).order(:expiration_date)
+        @table_title = "Items in your Freezer"
+        @new_title = "New Freezer Item"
+        render("/items/table.html.erb")
+      elsif @item.location == 2
+        @items = current_user.items.where(:location => 2).order(:expiration_date)
+        @table_title = "Items in your Pantry"
+        @new_title = "New Pantry Item"
+        render("/items/table.html.erb")
+      elsif @item.location == 3
+        @items = current_user.items.where(:location => 3).order(:expiration_date)
+        @table_title = "Items in your Fruit Bowl"
+        @new_title = "New Fruit Bowl Item"
+        render("/items/table.html.erb")
+      elsif @item.location == 4
+        @items = current_user.items.where(:location => 4).order(:expiration_date)
+        @table_title = "Items in Other locations"
+        @new_title = "New Other Item"
+        render("/items/table.html.erb")
       end
-    else
-      render("items/edit.html.erb")
     end
   end
 
