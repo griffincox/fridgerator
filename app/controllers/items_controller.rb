@@ -64,13 +64,6 @@ class ItemsController < ApplicationController
     render("items/table.html.erb")
   end
 
-
-  def show
-    @item = Item.find(params[:id])
-
-    render("items/show.html.erb")
-  end
-
   def new
     @item = Item.new
 
@@ -122,8 +115,10 @@ class ItemsController < ApplicationController
 
     @item.title = params[:title]
     input_date = params[:expiration_date]
-    split_date = input_date.split("/")
-    date = Date.new(split_date[2].to_i, split_date[0].to_i, split_date[1].to_i)
+    if input_date != ""
+      split_date = input_date.split("/")
+      date = Date.new(split_date[2].to_i, split_date[0].to_i, split_date[1].to_i)
+    end
     @item.expiration_date = date
     @item.location = params[:location]
     @item.image_url = params[:image_url]
@@ -158,10 +153,10 @@ class ItemsController < ApplicationController
     input_date = params[:expiration_date]
     split_date = input_date.split("/")
     date = Date.new(split_date[2].to_i, split_date[0].to_i, split_date[1].to_i)
-    @item.expiration_date = params[:expiration_date]
+    @item.expiration_date = date
     @item.location = params[:location]
     @item.image_url = params[:image_url]
-    @item.user_id = params[:user_id]
+    @item.user_id = current_user.id
 
     save_status = @item.save
 

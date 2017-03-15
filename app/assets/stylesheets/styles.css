@@ -1,0 +1,9 @@
+.expired {
+  background-color: #ff6060 !important;
+}
+.expiring-soon {
+  background-color: #fcf680 !important;
+}
+/*.expiring-later {
+  background-color: #7efc80 !important;
+}*/

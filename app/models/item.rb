@@ -6,10 +6,11 @@ class Item < ApplicationRecord
   # Indirect associations
 
   # Validations
+  validates :title, :presence => { :message => ": please provide a title" }
 
-  validates :expiration_date, :presence => { :message => "Please provide an expiration date" }
+  validates :expiration_date, :presence => { :message => ": please provide an expiration date" }
 
-  validates :location, :presence => { :message => "Please provide the food's location in your household." }
+  validates :location, :presence => { :message => ": please provide the food's location in your home" }
 
   validates :location, :numericality => { :less_than_or_equal_to => 4, :greater_than_or_equal_to => 0 }
 

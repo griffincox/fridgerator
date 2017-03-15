@@ -21,27 +21,46 @@
       </tr>
 
       <% @items.each do |item| %>
-      <tr>
-        <td><%= item.title %></td>
-        <td><%= item.expiration_date %></td>
-        <!-- <td><%= item.location %></td> -->
-        <!-- <td><%= item.image_url %></td> -->
-        <!-- <td>
-          <% if item.user.present? %>
-            <a href="/users/<%= item.user.id %>">
-              <%= item.user.email %>
-            </a>
-          <% end %>
-        </td> -->
-        <td>
-          <!-- <a href="/items/<%= item.id %>" class="btn btn-primary">Show</a> -->
-
-          <% if current_user == item.user %>
-            <a href="/items/<%= item.id %>/edit" class="btn btn-warning">Edit</a>
-            <a href="/delete_item/<%= item.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-          <% end %>
-        </td>
-      </tr>
+        <% if item.expiration_date.past? %>
+          <tr class="expired">
+            <td><%= item.title.titleize %></td>
+            <td>
+                Expired <%= distance_of_time_in_words(Time.now, item.expiration_date) %> Ago
+            </td>
+            <td>
+              <% if current_user == item.user %>
+                <a href="/items/<%= item.id %>/edit" class="btn btn-warning">Edit</a>
+                <a href="/delete_item/<%= item.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+              <% end %>
+            </td>
+          </tr>
+        <% elsif (item.expiration_date - 3.days).past?  %>
+          <tr class="expiring-soon">
+            <td><%= item.title.titleize  %></td>
+            <td>
+                <%= distance_of_time_in_words(Time.now, item.expiration_date) %>
+            </td>
+            <td>
+              <% if current_user == item.user %>
+                <a href="/items/<%= item.id %>/edit" class="btn btn-warning">Edit</a>
+                <a href="/delete_item/<%= item.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+              <% end %>
+            </td>
+          </tr>
+        <% else %>
+          <tr class="expiring-later">
+            <td><%= item.title.titleize  %></td>
+            <td>
+                <%= distance_of_time_in_words(Time.now, item.expiration_date) %>
+            </td>
+            <td>
+              <% if current_user == item.user %>
+                <a href="/items/<%= item.id %>/edit" class="btn btn-warning">Edit</a>
+                <a href="/delete_item/<%= item.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </table>
   </div>

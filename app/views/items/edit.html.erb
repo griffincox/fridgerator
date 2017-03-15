@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Item #<%= @item.id %></h3>
+  <h3>Edit <%= @item.title%></h3>
 </div>
 
 <div class="row">
@@ -36,11 +36,26 @@
         </label>
 
         <select id="location" name="location" class="form-control">
-          <option value="0">Fridge</option>
-          <option value="1">Freezer</option>
-          <option value="2">Pantry</option>
-          <option value="3">Fruit Bowl</option>
-          <option value="4">Other</option>
+          <option value="0"
+          <% if @item.location == 0%>
+          selected="selected"
+          <% end %>>Fridge</option>
+          <option value="1"
+          <% if @item.location == 1%>
+          selected="selected"
+          <% end %>>Freezer</option>
+          <option value="2"
+          <% if @item.location == 2%>
+          selected="selected"
+          <% end %>>Pantry</option>
+          <option value="3"
+          <% if @item.location == 3%>
+          selected="selected"
+          <% end %>>Fruit Bowl</option>
+          <option value="4"
+          <% if @item.location == 4%>
+          selected="selected"
+          <% end %>>Other</option>
         </select>
       </div>
 
