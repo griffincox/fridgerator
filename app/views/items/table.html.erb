@@ -2,7 +2,11 @@
   <h1>
     <%= @table_title %>
   </h1>
-    <a href="/items/new" class="btn btn-md btn-primary">New Item</a>
+  <% if @loc != nil %>
+    <a href="/items/new/<%= @loc %>_item" class="btn btn-md btn-primary"><%= @new_title %></a>
+  <% else %>
+    <a href="/items/new" class="btn btn-md btn-primary"><%= @new_title %></a>
+  <% end %>
 </div>
 <div class="row">
   <div class="col-md-12">

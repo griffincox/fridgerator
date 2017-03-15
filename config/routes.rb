@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   root :to => "items#index"
   # Routes for the Item resource:
   # CREATE
+  get "/items/new/fridge_item", :controller => "items", :action => "new_fridge_item"
+  get "/items/new/freezer_item", :controller => "items", :action => "new_freezer_item"
+  get "/items/new/fruitbowl_item", :controller => "items", :action => "new_fruitbowl_item"
+  get "/items/new/pantry_item", :controller => "items", :action => "new_pantry_item"
+  get "/items/new/other_item", :controller => "items", :action => "new_other_item"
   get "/items/new", :controller => "items", :action => "new"
   post "/create_item", :controller => "items", :action => "create"
 
