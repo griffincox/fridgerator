@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h1>
+    Items
+    <a href="/items/new" class="btn btn-lg btn-success">New Item</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Title</th>
+        <th>Expiration date</th>
+        <th>Location</th>
+        <th>Image url</th>
+        <th>User</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @items.each do |item| %>
+      <tr>
+        <td><%= item.title %></td>
+        <td><%= item.expiration_date %></td>
+        <td><%= item.location %></td>
+        <td><%= item.image_url %></td>
+        <td><%= item.user_id %></td>
+        <td>
+          <a href="/items/<%= item.id %>" class="btn btn-primary">Show</a>
+          <a href="/items/<%= item.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_item/<%= item.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

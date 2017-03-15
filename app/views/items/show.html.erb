@@ -1,0 +1,37 @@
+<div class="page-header">
+  <h3>Item #<%= @item.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Title</dt>
+      <dd><%= @item.title %></dd>
+
+      <dt>Expiration date</dt>
+      <dd><%= @item.expiration_date %></dd>
+
+      <dt>Location</dt>
+      <dd><%= @item.location %></dd>
+
+      <dt>Image url</dt>
+      <dd><%= @item.image_url %></dd>
+
+      <dt>User</dt>
+      <dd><%= @item.user_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/items" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/items/<%= @item.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_item/<%= @item.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
