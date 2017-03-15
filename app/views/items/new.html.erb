@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Add <%= @location %> Item</h3>
+  <h3>Add New Item</h3>
 </div>
 
 <div class="row">
@@ -33,7 +33,13 @@
           Location
         </label>
 
-        <input type="text" id="location" name="location" placeholder="Location" class="form-control" value="<%= @item.location %>">
+        <select id="location" name="location" class="form-control">
+          <option value="0">Fridge</option>
+          <option value="1">Freezer</option>
+          <option value="2">Pantry</option>
+          <option value="3">Fruit Bowl</option>
+          <option value="4">Other</option>
+        </select>
       </div>
 
       <!-- Label and input for expiration_date -->

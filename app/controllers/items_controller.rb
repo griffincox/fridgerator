@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = current_user.items.all
+    @items = current_user.items.all.order(:expiration_date)
     @table_title = "All Items"
     @new_title = "New Item"
     @loc = nil
@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def fridge
-    @items = current_user.items.where(:location => 0)
+    @items = current_user.items.where(:location => 0).order(:expiration_date)
     @table_title = "Items in your Fridge"
     @new_title = "New Fridge Item"
     @loc = "fridge"
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
   end
 
   def freezer
-    @items = current_user.items.where(:location => 1)
+    @items = current_user.items.where(:location => 1).order(:expiration_date)
     @table_title = "Items in your Freezer"
     @new_title = "New Freezer Item"
     @loc = "freezer"
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def pantry
-    @items = current_user.items.where(:location => 2)
+    @items = current_user.items.where(:location => 2).order(:expiration_date)
     @table_title = "Items in your Pantry"
     @new_title = "New Pantry Item"
     @loc = "pantry"
@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
   end
 
   def fruitbowl
-    @items = current_user.items.where(:location => 3)
+    @items = current_user.items.where(:location => 3).order(:expiration_date)
     @table_title = "Items in your Fruit Bowl"
     @new_title = "New Fruit Bowl Item"
     @loc = "fruitbowl"
@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
   end
 
   def other
-    @items = current_user.items.where(:location => 4)
+    @items = current_user.items.where(:location => 4).order(:expiration_date)
     @table_title = "Items in Other Locations"
     @new_title = "New Other Item"
     @loc = "other"
@@ -155,6 +155,9 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
     @item.title = params[:title]
+    input_date = params[:expiration_date]
+    split_date = input_date.split("/")
+    date = Date.new(split_date[2].to_i, split_date[0].to_i, split_date[1].to_i)
     @item.expiration_date = params[:expiration_date]
     @item.location = params[:location]
     @item.image_url = params[:image_url]
