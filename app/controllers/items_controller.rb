@@ -151,8 +151,10 @@ class ItemsController < ApplicationController
 
     @item.title = params[:title]
     input_date = params[:expiration_date]
-    split_date = input_date.split("/")
-    date = Date.new(split_date[2].to_i, split_date[0].to_i, split_date[1].to_i)
+    if input_date != ""
+      split_date = input_date.split("/")
+      date = Date.new(split_date[2].to_i, split_date[0].to_i, split_date[1].to_i)
+    end
     @item.expiration_date = date
     @item.location = params[:location]
     @item.image_url = params[:image_url]
@@ -162,31 +164,18 @@ class ItemsController < ApplicationController
 
     if save_status == true
       if @item.location == 0
-        @items = current_user.items.where(:location => 0).order(:expiration_date)
-        @table_title = "Items in your Fridge"
-        @new_title = "New Fridge Item"
-        render("/items/table.html.erb")
+        redirect_to("/items/fridge", :notice => "Fridge Item Updated")
       elsif @item.location == 1
-        @items = current_user.items.where(:location => 1).order(:expiration_date)
-        @table_title = "Items in your Freezer"
-        @new_title = "New Freezer Item"
-        render("/items/table.html.erb")
+        redirect_to("/items/freezer", :notice => "Freezer Item Updated")
       elsif @item.location == 2
-        @items = current_user.items.where(:location => 2).order(:expiration_date)
-        @table_title = "Items in your Pantry"
-        @new_title = "New Pantry Item"
-        render("/items/table.html.erb")
+        redirect_to("/items/pantry", :notice => "Pantry Item Updated")
       elsif @item.location == 3
-        @items = current_user.items.where(:location => 3).order(:expiration_date)
-        @table_title = "Items in your Fruit Bowl"
-        @new_title = "New Fruit Bowl Item"
-        render("/items/table.html.erb")
+        redirect_to("/items/fruitbowl", :notice => "Fruit Bowl Item Updated")
       elsif @item.location == 4
-        @items = current_user.items.where(:location => 4).order(:expiration_date)
-        @table_title = "Items in Other locations"
-        @new_title = "New Other Item"
-        render("/items/table.html.erb")
+        redirect_to("/items/other", :notice => "Other Item Updated")
       end
+    else
+      render("/items/edit", :error => "Invalid entry")
     end
   end
 
