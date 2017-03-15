@@ -18,7 +18,13 @@
       <dd><%= @item.image_url %></dd>
 
       <dt>User</dt>
-      <dd><%= @item.user_id %></dd>
+      <dd>
+        <% if @item.user.present? %>
+          <a href="/users/<%= @item.user_id %>">
+            <%= @item.user.email %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 
