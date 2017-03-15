@@ -23,7 +23,7 @@
         <td><%= item.expiration_date %></td>
         <td><%= item.location %></td>
         <td><%= item.image_url %></td>
-        <td><%= item.user_id %></td>
+        <td><%= item.user.email %></td>
         <td>
           <a href="/items/<%= item.id %>" class="btn btn-primary">Show</a>
           <a href="/items/<%= item.id %>/edit" class="btn btn-warning">Edit</a>
