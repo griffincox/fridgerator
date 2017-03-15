@@ -5,6 +5,8 @@ class Item < ApplicationRecord
 
   # Validations
 
+  validates :location, :presence => { :message => "Please provide the food's location in your household." }
+
   validates :location, :numericality => { :less_than_or_equal_to => 4, :greater_than_or_equal_to => 0 }
 
 end
