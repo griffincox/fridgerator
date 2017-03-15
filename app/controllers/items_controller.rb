@@ -126,18 +126,22 @@ class ItemsController < ApplicationController
 
     save_status = @item.save
 
+    save_status = @item.save
+
     if save_status == true
-      referer = URI(request.referer).path
-
-      case referer
-      when "/items/new", "/create_item"
-        redirect_to("/items")
+      if @item.location == 0
+        redirect_to("/items/fridge", :notice => "Fridge Item Added")
+      elsif @item.location == 1
+        redirect_to("/items/freezer", :notice => "Freezer Item Added")
+      elsif @item.location == 2
+        redirect_to("/items/pantry", :notice => "Pantry Item Added")
+      elsif @item.location == 3
+        redirect_to("/items/fruitbowl", :notice => "Fruit Bowl Item Added")
+      elsif @item.location == 4
+        redirect_to("/items/other", :notice => "Other Item Added")
       else
-        redirect_back(:fallback_location => "/", :notice => "Item created successfully.")
+      render("/items/new", :error => "Invalid entry")
       end
-    else
-
-      render("items/new.html.erb")
     end
   end
 
