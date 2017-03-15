@@ -5,7 +5,7 @@
   <title>Fridgerator</title>
 
 
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
   <style>
@@ -41,34 +41,39 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/items">Items</a></li>
-          <li><a href="/users">Users</a></li>
-          <li><a href="/rails/info">Sitemap</a></li>
+          <li><a href="/items">All Items</a></li>
+          <li><a href="/items/fridge">Fridge</a></li>
+          <li><a href="/items/freezer">Freezer</a></li>
+          <li><a href="/items/pantry">Pantry</a></li>
+          <li><a href="/items/fruitbowl">Fruit Bowl</a></li>
+          <li><a href="/items/other">Other</a></li>
+          <!-- <li><a href="/users">Users</a></li> -->
+          <!-- <li><a href="/rails/info">Sitemap</a></li> -->
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
           <% if current_user.present? %>
             <li>
               <a href="/users/edit">
-                <%= current_user.email %>
+                <i class="fa fa-user fa-3"></i> <%= current_user.email %>
               </a>
             </li>
 
             <li>
               <a href="/users/sign_out" data-method="delete" rel="nofollow">
-                Sign Out
+                <i class="fa fa-sign-out fa-3"></i> Sign Out
               </a>
             </li>
           <% else %>
             <li>
               <a href="/users/sign_up">
-                Sign Up
+                <i class="fa fa-user-plus fa-3"></i> Sign Up
               </a>
             </li>
 
             <li>
               <a href="/users/sign_in">
-                Sign In
+                <i class="fa fa-sign-in fa-3"></i> Sign In
               </a>
             </li>
           <% end %>

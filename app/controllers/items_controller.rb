@@ -10,11 +10,46 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @q = current_user.items.ransack(params[:q])
-      @items = @q.result(:distinct => true).includes(:user).page(params[:page]).per(10)
+    @items = current_user.items.all
+    @table_title = "All Items"
 
-    render("items/index.html.erb")
+    render("items/table.html.erb")
   end
+
+  def fridge
+    @items = current_user.items.where(:location => 0)
+    @table_title = "Items in your Fridge"
+
+    render("items/table.html.erb")
+  end
+
+  def freezer
+    @items = current_user.items.where(:location => 1)
+    @table_title = "Items in your Freezer"
+
+    render("items/table.html.erb")
+  end
+
+  def pantry
+    @items = current_user.items.where(:location => 2)
+    @table_title = "Items in your Pantry"
+
+    render("items/table.html.erb")
+  end
+
+  def fruitbowl
+    @items = current_user.items.where(:location => 3)
+    @table_title = "Items in your Fruit Bowl"
+    render("items/table.html.erb")
+  end
+
+  def other
+    @items = current_user.items.where(:location => 4)
+    @table_title = "Items in Other Locations"
+
+    render("items/table.html.erb")
+  end
+
 
   def show
     @item = Item.find(params[:id])

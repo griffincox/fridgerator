@@ -27,15 +27,6 @@
         <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @item.title %>">
       </div>
 
-      <!-- Label and input for expiration_date -->
-      <div class="form-group">
-        <label for="expiration_date" class="control-label">
-          Expiration date
-        </label>
-
-        <input type="text" id="expiration_date" name="expiration_date" placeholder="Expiration date" class="form-control" value="<%= @item.expiration_date %>">
-      </div>
-
       <!-- Label and input for location -->
       <div class="form-group">
         <label for="location" class="control-label">
@@ -45,14 +36,26 @@
         <input type="text" id="location" name="location" placeholder="Location" class="form-control" value="<%= @item.location %>">
       </div>
 
-      <!-- Label and input for image_url -->
+      <!-- Label and input for expiration_date -->
       <div class="form-group">
+        <label for="expiration_date" class="control-label">
+          Expiration date
+        </label>
+
+        <input type="text" id="expiration_date" data-provide='datepicker' name="expiration_date" placeholder="Expiration date" class="form-control" value="<%= @item.expiration_date %>">
+      </div>
+
+
+
+
+      <!-- Label and input for image_url -->
+      <!-- <div class="form-group">
         <label for="image_url" class="control-label">
           Image url
         </label>
 
         <input type="text" id="image_url" name="image_url" placeholder="Image url" class="form-control" value="<%= @item.image_url %>">
-      </div>
+      </div> -->
 
       <!-- Label and input for user_id -->
       <input type="hidden" name="user_id" value="<%= current_user.id %>">

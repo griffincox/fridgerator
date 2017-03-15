@@ -89,6 +89,8 @@ GEM
       activesupport (>= 3.0.0)
     arel (7.1.4)
     bcrypt (3.1.11)
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     bootstrap3-datetimepicker-rails (4.17.47)
       momentjs-rails (>= 2.8.1)
     bootstrap4-kaminari-views (1.0.0)
@@ -248,6 +250,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   activerecord-import
+  bootstrap-datepicker-rails
   bootstrap3-datetimepicker-rails (~> 4.17.43)
   bootstrap4-kaminari-views
   byebug
